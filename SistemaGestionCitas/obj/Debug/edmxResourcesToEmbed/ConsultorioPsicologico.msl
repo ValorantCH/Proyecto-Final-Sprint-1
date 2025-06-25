@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ResilientesCuscoDBModelStoreContainer" CdmEntityContainer="ResilientesCuscoEntities">
+    <EntitySetMapping Name="Citas">
+      <EntityTypeMapping TypeName="ResilientesCuscoDBModel.Citas">
+        <MappingFragment StoreEntitySet="Citas">
+          <ScalarProperty Name="CitaID" ColumnName="CitaID" />
+          <ScalarProperty Name="PacienteID" ColumnName="PacienteID" />
+          <ScalarProperty Name="PsicologoID" ColumnName="PsicologoID" />
+          <ScalarProperty Name="FechaHoraCita" ColumnName="FechaHoraCita" />
+          <ScalarProperty Name="TipoCita" ColumnName="TipoCita" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Notas" ColumnName="Notas" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HistoriasClinicas">
+      <EntityTypeMapping TypeName="ResilientesCuscoDBModel.HistoriasClinicas">
+        <MappingFragment StoreEntitySet="HistoriasClinicas">
+          <ScalarProperty Name="HistoriaID" ColumnName="HistoriaID" />
+          <ScalarProperty Name="PacienteID" ColumnName="PacienteID" />
+          <ScalarProperty Name="CitaID" ColumnName="CitaID" />
+          <ScalarProperty Name="Diagnostico" ColumnName="Diagnostico" />
+          <ScalarProperty Name="PlanTratamiento" ColumnName="PlanTratamiento" />
+          <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pacientes">
+      <EntityTypeMapping TypeName="ResilientesCuscoDBModel.Pacientes">
+        <MappingFragment StoreEntitySet="Pacientes">
+          <ScalarProperty Name="PacienteID" ColumnName="PacienteID" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="NumeroDocumento" ColumnName="NumeroDocumento" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Psicologos">
+      <EntityTypeMapping TypeName="ResilientesCuscoDBModel.Psicologos">
+        <MappingFragment StoreEntitySet="Psicologos">
+          <ScalarProperty Name="PsicologoID" ColumnName="PsicologoID" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="NumeroLicencia" ColumnName="NumeroLicencia" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Especialidad" ColumnName="Especialidad" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_ActualizarCita" FunctionName="ResilientesCuscoDBModel.Store.sp_ActualizarCita" />
+    <FunctionImportMapping FunctionImportName="sp_ActualizarHistoriaClinica" FunctionName="ResilientesCuscoDBModel.Store.sp_ActualizarHistoriaClinica" />
+    <FunctionImportMapping FunctionImportName="sp_ActualizarPaciente" FunctionName="ResilientesCuscoDBModel.Store.sp_ActualizarPaciente" />
+    <FunctionImportMapping FunctionImportName="sp_ActualizarPsicologo" FunctionName="ResilientesCuscoDBModel.Store.sp_ActualizarPsicologo" />
+    <FunctionImportMapping FunctionImportName="sp_CrearCita" FunctionName="ResilientesCuscoDBModel.Store.sp_CrearCita" />
+    <FunctionImportMapping FunctionImportName="sp_CrearHistoriaClinica" FunctionName="ResilientesCuscoDBModel.Store.sp_CrearHistoriaClinica" />
+    <FunctionImportMapping FunctionImportName="sp_CrearPaciente" FunctionName="ResilientesCuscoDBModel.Store.sp_CrearPaciente" />
+    <FunctionImportMapping FunctionImportName="sp_CrearPsicologo" FunctionName="ResilientesCuscoDBModel.Store.sp_CrearPsicologo" />
+    <FunctionImportMapping FunctionImportName="sp_EliminarCita" FunctionName="ResilientesCuscoDBModel.Store.sp_EliminarCita" />
+    <FunctionImportMapping FunctionImportName="sp_EliminarHistoriaClinica" FunctionName="ResilientesCuscoDBModel.Store.sp_EliminarHistoriaClinica" />
+    <FunctionImportMapping FunctionImportName="sp_EliminarPaciente" FunctionName="ResilientesCuscoDBModel.Store.sp_EliminarPaciente" />
+    <FunctionImportMapping FunctionImportName="sp_EliminarPsicologo" FunctionName="ResilientesCuscoDBModel.Store.sp_EliminarPsicologo" />
+    <FunctionImportMapping FunctionImportName="sp_LeerCitaPorID" FunctionName="ResilientesCuscoDBModel.Store.sp_LeerCitaPorID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ResilientesCuscoDBModel.sp_LeerCitaPorID_Result">
+          <ScalarProperty Name="CitaID" ColumnName="CitaID" />
+          <ScalarProperty Name="PacienteID" ColumnName="PacienteID" />
+          <ScalarProperty Name="NombrePaciente" ColumnName="NombrePaciente" />
+          <ScalarProperty Name="PsicologoID" ColumnName="PsicologoID" />
+          <ScalarProperty Name="NombrePsicologo" ColumnName="NombrePsicologo" />
+          <ScalarProperty Name="FechaHoraCita" ColumnName="FechaHoraCita" />
+          <ScalarProperty Name="TipoCita" ColumnName="TipoCita" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Notas" ColumnName="Notas" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_LeerCitas" FunctionName="ResilientesCuscoDBModel.Store.sp_LeerCitas">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ResilientesCuscoDBModel.sp_LeerCitas_Result">
+          <ScalarProperty Name="CitaID" ColumnName="CitaID" />
+          <ScalarProperty Name="PacienteID" ColumnName="PacienteID" />
+          <ScalarProperty Name="NombrePaciente" ColumnName="NombrePaciente" />
+          <ScalarProperty Name="PsicologoID" ColumnName="PsicologoID" />
+          <ScalarProperty Name="NombrePsicologo" ColumnName="NombrePsicologo" />
+          <ScalarProperty Name="FechaHoraCita" ColumnName="FechaHoraCita" />
+          <ScalarProperty Name="TipoCita" ColumnName="TipoCita" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Notas" ColumnName="Notas" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_LeerHistoriaClinicaPorID" FunctionName="ResilientesCuscoDBModel.Store.sp_LeerHistoriaClinicaPorID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ResilientesCuscoDBModel.sp_LeerHistoriaClinicaPorID_Result">
+          <ScalarProperty Name="HistoriaID" ColumnName="HistoriaID" />
+          <ScalarProperty Name="PacienteID" ColumnName="PacienteID" />
+          <ScalarProperty Name="NombrePaciente" ColumnName="NombrePaciente" />
+          <ScalarProperty Name="CitaID" ColumnName="CitaID" />
+          <ScalarProperty Name="Diagnostico" ColumnName="Diagnostico" />
+          <ScalarProperty Name="PlanTratamiento" ColumnName="PlanTratamiento" />
+          <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_LeerHistoriasClinicas" FunctionName="ResilientesCuscoDBModel.Store.sp_LeerHistoriasClinicas">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ResilientesCuscoDBModel.sp_LeerHistoriasClinicas_Result">
+          <ScalarProperty Name="HistoriaID" ColumnName="HistoriaID" />
+          <ScalarProperty Name="PacienteID" ColumnName="PacienteID" />
+          <ScalarProperty Name="NombrePaciente" ColumnName="NombrePaciente" />
+          <ScalarProperty Name="CitaID" ColumnName="CitaID" />
+          <ScalarProperty Name="Diagnostico" ColumnName="Diagnostico" />
+          <ScalarProperty Name="PlanTratamiento" ColumnName="PlanTratamiento" />
+          <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_LeerPacientePorID" FunctionName="ResilientesCuscoDBModel.Store.sp_LeerPacientePorID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ResilientesCuscoDBModel.sp_LeerPacientePorID_Result">
+          <ScalarProperty Name="PacienteID" ColumnName="PacienteID" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="NumeroDocumento" ColumnName="NumeroDocumento" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_LeerPacientes" FunctionName="ResilientesCuscoDBModel.Store.sp_LeerPacientes">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ResilientesCuscoDBModel.sp_LeerPacientes_Result">
+          <ScalarProperty Name="PacienteID" ColumnName="PacienteID" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="NumeroDocumento" ColumnName="NumeroDocumento" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_LeerPsicologoPorID" FunctionName="ResilientesCuscoDBModel.Store.sp_LeerPsicologoPorID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ResilientesCuscoDBModel.sp_LeerPsicologoPorID_Result">
+          <ScalarProperty Name="PsicologoID" ColumnName="PsicologoID" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="NumeroLicencia" ColumnName="NumeroLicencia" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Especialidad" ColumnName="Especialidad" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_LeerPsicologos" FunctionName="ResilientesCuscoDBModel.Store.sp_LeerPsicologos">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ResilientesCuscoDBModel.sp_LeerPsicologos_Result">
+          <ScalarProperty Name="PsicologoID" ColumnName="PsicologoID" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="NumeroLicencia" ColumnName="NumeroLicencia" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Especialidad" ColumnName="Especialidad" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

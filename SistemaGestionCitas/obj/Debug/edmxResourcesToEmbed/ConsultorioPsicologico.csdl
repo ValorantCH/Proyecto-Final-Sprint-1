@@ -1,0 +1,314 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ResilientesCuscoDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Citas">
+    <Key>
+      <PropertyRef Name="CitaID" />
+    </Key>
+    <Property Name="CitaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PacienteID" Type="Int32" Nullable="false" />
+    <Property Name="PsicologoID" Type="Int32" Nullable="false" />
+    <Property Name="FechaHoraCita" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TipoCita" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Estado" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Notas" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Pacientes" Relationship="Self.FK_Citas_Pacientes" FromRole="Citas" ToRole="Pacientes" />
+    <NavigationProperty Name="Psicologos" Relationship="Self.FK_Citas_Psicologos" FromRole="Citas" ToRole="Psicologos" />
+    <NavigationProperty Name="HistoriasClinicas" Relationship="Self.FK_HistoriasClinicas_Citas" FromRole="Citas" ToRole="HistoriasClinicas" />
+  </EntityType>
+  <EntityType Name="HistoriasClinicas">
+    <Key>
+      <PropertyRef Name="HistoriaID" />
+    </Key>
+    <Property Name="HistoriaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PacienteID" Type="Int32" Nullable="false" />
+    <Property Name="CitaID" Type="Int32" Nullable="false" />
+    <Property Name="Diagnostico" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="PlanTratamiento" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Observaciones" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Citas" Relationship="Self.FK_HistoriasClinicas_Citas" FromRole="HistoriasClinicas" ToRole="Citas" />
+    <NavigationProperty Name="Pacientes" Relationship="Self.FK_HistoriasClinicas_Pacientes" FromRole="HistoriasClinicas" ToRole="Pacientes" />
+  </EntityType>
+  <EntityType Name="Pacientes">
+    <Key>
+      <PropertyRef Name="PacienteID" />
+    </Key>
+    <Property Name="PacienteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NumeroDocumento" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Correo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Direccion" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="FechaNacimiento" Type="DateTime" Precision="0" />
+    <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Citas" Relationship="Self.FK_Citas_Pacientes" FromRole="Pacientes" ToRole="Citas" />
+    <NavigationProperty Name="HistoriasClinicas" Relationship="Self.FK_HistoriasClinicas_Pacientes" FromRole="Pacientes" ToRole="HistoriasClinicas" />
+  </EntityType>
+  <EntityType Name="Psicologos">
+    <Key>
+      <PropertyRef Name="PsicologoID" />
+    </Key>
+    <Property Name="PsicologoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NumeroLicencia" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Correo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Especialidad" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Citas" Relationship="Self.FK_Citas_Psicologos" FromRole="Psicologos" ToRole="Citas" />
+  </EntityType>
+  <Association Name="FK_Citas_Pacientes">
+    <End Role="Pacientes" Type="Self.Pacientes" Multiplicity="1" />
+    <End Role="Citas" Type="Self.Citas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pacientes">
+        <PropertyRef Name="PacienteID" />
+      </Principal>
+      <Dependent Role="Citas">
+        <PropertyRef Name="PacienteID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Citas_Psicologos">
+    <End Role="Psicologos" Type="Self.Psicologos" Multiplicity="1" />
+    <End Role="Citas" Type="Self.Citas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Psicologos">
+        <PropertyRef Name="PsicologoID" />
+      </Principal>
+      <Dependent Role="Citas">
+        <PropertyRef Name="PsicologoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HistoriasClinicas_Citas">
+    <End Role="Citas" Type="Self.Citas" Multiplicity="1" />
+    <End Role="HistoriasClinicas" Type="Self.HistoriasClinicas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Citas">
+        <PropertyRef Name="CitaID" />
+      </Principal>
+      <Dependent Role="HistoriasClinicas">
+        <PropertyRef Name="CitaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HistoriasClinicas_Pacientes">
+    <End Role="Pacientes" Type="Self.Pacientes" Multiplicity="1" />
+    <End Role="HistoriasClinicas" Type="Self.HistoriasClinicas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pacientes">
+        <PropertyRef Name="PacienteID" />
+      </Principal>
+      <Dependent Role="HistoriasClinicas">
+        <PropertyRef Name="PacienteID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ResilientesCuscoEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Citas" EntityType="Self.Citas" />
+    <EntitySet Name="HistoriasClinicas" EntityType="Self.HistoriasClinicas" />
+    <EntitySet Name="Pacientes" EntityType="Self.Pacientes" />
+    <EntitySet Name="Psicologos" EntityType="Self.Psicologos" />
+    <AssociationSet Name="FK_Citas_Pacientes" Association="Self.FK_Citas_Pacientes">
+      <End Role="Pacientes" EntitySet="Pacientes" />
+      <End Role="Citas" EntitySet="Citas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Citas_Psicologos" Association="Self.FK_Citas_Psicologos">
+      <End Role="Psicologos" EntitySet="Psicologos" />
+      <End Role="Citas" EntitySet="Citas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HistoriasClinicas_Citas" Association="Self.FK_HistoriasClinicas_Citas">
+      <End Role="Citas" EntitySet="Citas" />
+      <End Role="HistoriasClinicas" EntitySet="HistoriasClinicas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HistoriasClinicas_Pacientes" Association="Self.FK_HistoriasClinicas_Pacientes">
+      <End Role="Pacientes" EntitySet="Pacientes" />
+      <End Role="HistoriasClinicas" EntitySet="HistoriasClinicas" />
+    </AssociationSet>
+    <FunctionImport Name="sp_ActualizarCita">
+      <Parameter Name="CitaID" Mode="In" Type="Int32" />
+      <Parameter Name="PacienteID" Mode="In" Type="Int32" />
+      <Parameter Name="PsicologoID" Mode="In" Type="Int32" />
+      <Parameter Name="FechaHoraCita" Mode="In" Type="DateTime" />
+      <Parameter Name="TipoCita" Mode="In" Type="String" />
+      <Parameter Name="Estado" Mode="In" Type="String" />
+      <Parameter Name="Notas" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_ActualizarHistoriaClinica">
+      <Parameter Name="HistoriaID" Mode="In" Type="Int32" />
+      <Parameter Name="PacienteID" Mode="In" Type="Int32" />
+      <Parameter Name="CitaID" Mode="In" Type="Int32" />
+      <Parameter Name="Diagnostico" Mode="In" Type="String" />
+      <Parameter Name="PlanTratamiento" Mode="In" Type="String" />
+      <Parameter Name="Observaciones" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_ActualizarPaciente">
+      <Parameter Name="PacienteID" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Apellido" Mode="In" Type="String" />
+      <Parameter Name="NumeroDocumento" Mode="In" Type="String" />
+      <Parameter Name="Correo" Mode="In" Type="String" />
+      <Parameter Name="Telefono" Mode="In" Type="String" />
+      <Parameter Name="Direccion" Mode="In" Type="String" />
+      <Parameter Name="FechaNacimiento" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="sp_ActualizarPsicologo">
+      <Parameter Name="PsicologoID" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Apellido" Mode="In" Type="String" />
+      <Parameter Name="NumeroLicencia" Mode="In" Type="String" />
+      <Parameter Name="Correo" Mode="In" Type="String" />
+      <Parameter Name="Telefono" Mode="In" Type="String" />
+      <Parameter Name="Especialidad" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_CrearCita" ReturnType="Collection(Decimal)">
+      <Parameter Name="PacienteID" Mode="In" Type="Int32" />
+      <Parameter Name="PsicologoID" Mode="In" Type="Int32" />
+      <Parameter Name="FechaHoraCita" Mode="In" Type="DateTime" />
+      <Parameter Name="TipoCita" Mode="In" Type="String" />
+      <Parameter Name="Notas" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_CrearHistoriaClinica" ReturnType="Collection(Decimal)">
+      <Parameter Name="PacienteID" Mode="In" Type="Int32" />
+      <Parameter Name="CitaID" Mode="In" Type="Int32" />
+      <Parameter Name="Diagnostico" Mode="In" Type="String" />
+      <Parameter Name="PlanTratamiento" Mode="In" Type="String" />
+      <Parameter Name="Observaciones" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_CrearPaciente" ReturnType="Collection(Decimal)">
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Apellido" Mode="In" Type="String" />
+      <Parameter Name="NumeroDocumento" Mode="In" Type="String" />
+      <Parameter Name="Correo" Mode="In" Type="String" />
+      <Parameter Name="Telefono" Mode="In" Type="String" />
+      <Parameter Name="Direccion" Mode="In" Type="String" />
+      <Parameter Name="FechaNacimiento" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="sp_CrearPsicologo" ReturnType="Collection(Decimal)">
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Apellido" Mode="In" Type="String" />
+      <Parameter Name="NumeroLicencia" Mode="In" Type="String" />
+      <Parameter Name="Correo" Mode="In" Type="String" />
+      <Parameter Name="Telefono" Mode="In" Type="String" />
+      <Parameter Name="Especialidad" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_EliminarCita">
+      <Parameter Name="CitaID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_EliminarHistoriaClinica">
+      <Parameter Name="HistoriaID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_EliminarPaciente">
+      <Parameter Name="PacienteID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_EliminarPsicologo">
+      <Parameter Name="PsicologoID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_LeerCitaPorID" ReturnType="Collection(ResilientesCuscoDBModel.sp_LeerCitaPorID_Result)">
+      <Parameter Name="CitaID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_LeerCitas" ReturnType="Collection(ResilientesCuscoDBModel.sp_LeerCitas_Result)" />
+    <FunctionImport Name="sp_LeerHistoriaClinicaPorID" ReturnType="Collection(ResilientesCuscoDBModel.sp_LeerHistoriaClinicaPorID_Result)">
+      <Parameter Name="HistoriaID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_LeerHistoriasClinicas" ReturnType="Collection(ResilientesCuscoDBModel.sp_LeerHistoriasClinicas_Result)" />
+    <FunctionImport Name="sp_LeerPacientePorID" ReturnType="Collection(ResilientesCuscoDBModel.sp_LeerPacientePorID_Result)">
+      <Parameter Name="PacienteID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_LeerPacientes" ReturnType="Collection(ResilientesCuscoDBModel.sp_LeerPacientes_Result)" />
+    <FunctionImport Name="sp_LeerPsicologoPorID" ReturnType="Collection(ResilientesCuscoDBModel.sp_LeerPsicologoPorID_Result)">
+      <Parameter Name="PsicologoID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_LeerPsicologos" ReturnType="Collection(ResilientesCuscoDBModel.sp_LeerPsicologos_Result)" />
+  </EntityContainer>
+  <ComplexType Name="sp_LeerCitaPorID_Result">
+    <Property Type="Int32" Name="CitaID" Nullable="false" />
+    <Property Type="Int32" Name="PacienteID" Nullable="false" />
+    <Property Type="String" Name="NombrePaciente" Nullable="false" MaxLength="101" />
+    <Property Type="Int32" Name="PsicologoID" Nullable="false" />
+    <Property Type="String" Name="NombrePsicologo" Nullable="false" MaxLength="101" />
+    <Property Type="DateTime" Name="FechaHoraCita" Nullable="false" Precision="23" />
+    <Property Type="String" Name="TipoCita" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Estado" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Notas" Nullable="true" MaxLength="500" />
+    <Property Type="DateTime" Name="FechaCreacion" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="sp_LeerCitas_Result">
+    <Property Type="Int32" Name="CitaID" Nullable="false" />
+    <Property Type="Int32" Name="PacienteID" Nullable="false" />
+    <Property Type="String" Name="NombrePaciente" Nullable="false" MaxLength="101" />
+    <Property Type="Int32" Name="PsicologoID" Nullable="false" />
+    <Property Type="String" Name="NombrePsicologo" Nullable="false" MaxLength="101" />
+    <Property Type="DateTime" Name="FechaHoraCita" Nullable="false" Precision="23" />
+    <Property Type="String" Name="TipoCita" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Estado" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Notas" Nullable="true" MaxLength="500" />
+    <Property Type="DateTime" Name="FechaCreacion" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="sp_LeerHistoriaClinicaPorID_Result">
+    <Property Type="Int32" Name="HistoriaID" Nullable="false" />
+    <Property Type="Int32" Name="PacienteID" Nullable="false" />
+    <Property Type="String" Name="NombrePaciente" Nullable="false" MaxLength="101" />
+    <Property Type="Int32" Name="CitaID" Nullable="false" />
+    <Property Type="String" Name="Diagnostico" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="PlanTratamiento" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="Observaciones" Nullable="true" MaxLength="1000" />
+    <Property Type="DateTime" Name="FechaCreacion" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="sp_LeerHistoriasClinicas_Result">
+    <Property Type="Int32" Name="HistoriaID" Nullable="false" />
+    <Property Type="Int32" Name="PacienteID" Nullable="false" />
+    <Property Type="String" Name="NombrePaciente" Nullable="false" MaxLength="101" />
+    <Property Type="Int32" Name="CitaID" Nullable="false" />
+    <Property Type="String" Name="Diagnostico" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="PlanTratamiento" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="Observaciones" Nullable="true" MaxLength="1000" />
+    <Property Type="DateTime" Name="FechaCreacion" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="sp_LeerPacientePorID_Result">
+    <Property Type="Int32" Name="PacienteID" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Apellido" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="NumeroDocumento" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Correo" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Telefono" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="Direccion" Nullable="true" MaxLength="200" />
+    <Property Type="DateTime" Name="FechaNacimiento" Nullable="true" />
+    <Property Type="DateTime" Name="FechaCreacion" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="sp_LeerPacientes_Result">
+    <Property Type="Int32" Name="PacienteID" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Apellido" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="NumeroDocumento" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Correo" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Telefono" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="Direccion" Nullable="true" MaxLength="200" />
+    <Property Type="DateTime" Name="FechaNacimiento" Nullable="true" />
+    <Property Type="DateTime" Name="FechaCreacion" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="sp_LeerPsicologoPorID_Result">
+    <Property Type="Int32" Name="PsicologoID" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Apellido" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="NumeroLicencia" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Correo" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Telefono" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="Especialidad" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="FechaCreacion" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="sp_LeerPsicologos_Result">
+    <Property Type="Int32" Name="PsicologoID" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Apellido" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="NumeroLicencia" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Correo" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Telefono" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="Especialidad" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="FechaCreacion" Nullable="true" Precision="23" />
+  </ComplexType>
+</Schema>

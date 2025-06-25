@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ea28e500d0a74179b33b5a199f89605f" Name="Diagram1">
+        <EntityTypeShape EntityType="ResilientesCuscoDBModel.Citas" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ResilientesCuscoDBModel.HistoriasClinicas" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ResilientesCuscoDBModel.Pacientes" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ResilientesCuscoDBModel.Psicologos" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <AssociationConnector Association="ResilientesCuscoDBModel.FK_Citas_Pacientes" ManuallyRouted="false" />
+        <AssociationConnector Association="ResilientesCuscoDBModel.FK_Citas_Psicologos" ManuallyRouted="false" />
+        <AssociationConnector Association="ResilientesCuscoDBModel.FK_HistoriasClinicas_Citas" ManuallyRouted="false" />
+        <AssociationConnector Association="ResilientesCuscoDBModel.FK_HistoriasClinicas_Pacientes" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
